@@ -29,15 +29,17 @@ public class WhileLoop implements Statement
      * Do the block while the condition is true.
      *
      * @param env the environment to pull variable values from
+     * @return
      */
     @Override
-    public void exec(Environment env)
+    public int exec(Environment env)
     {
         while ((((int) ((Number) condition.evaluate(env)).evaluate(env)) == 1)
                 || (boolean) condition.evaluate(env))
         {
             b.exec(env);
         }
+        return 0;
     }
 
     /**

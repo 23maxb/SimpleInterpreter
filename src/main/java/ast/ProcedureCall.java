@@ -44,11 +44,12 @@ public class ProcedureCall implements Statement, Expression
      * Executes the procedure call.
      *
      * @param env the environment in which the statement is executed
+     * @return
      * @precondition e != null
      * @postcondition the code has been executed and the variables have been updated
      */
     @Override
-    public void exec(@NotNull Environment env)
+    public int exec(@NotNull Environment env)
     {
         Object[] args =
                 Arrays.stream(arguments).map(expression -> expression.evaluate(env)).toArray();
@@ -71,6 +72,7 @@ public class ProcedureCall implements Statement, Expression
             {
                 env.setVariable(entry.getKey(), entry.getValue());
             }
+        return 0;
     }
 
     /**

@@ -28,12 +28,14 @@ public class Block implements Statement
      * Executes every item in the block
      *
      * @param e the environment to get variables from
+     * @return
      */
     @Override
-    public void exec(Environment e)
+    public int exec(Environment e)
     {
         for (Statement statement : statements)
             statement.exec(e);
+        return 0;
     }
 
     /**

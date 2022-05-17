@@ -70,11 +70,13 @@ public class Assignment implements Statement
      * Adds a new entry to the given environment's has map.
      *
      * @param e the environment that is used to store the variables
+     * @return
      */
     @Override
-    public void exec(Environment e)
+    public int exec(Environment e)
     {
         e.setVariable(variableName, value.evaluate(e));
+        return 0;
     }
 
     /**

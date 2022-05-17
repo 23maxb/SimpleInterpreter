@@ -14,8 +14,9 @@ public interface Statement
      * Executes the statement and does whatever operation is needed.
      *
      * @param env the environment in which the statement is executed
+     * @return
      */
-    void exec(Environment env);
+    int exec(Environment env);
 
     /**
      * Returns a string representation of the object

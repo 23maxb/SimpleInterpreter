@@ -29,15 +29,17 @@ public class If implements Statement
      * Executes the statement
      *
      * @param env the environment in which the statement is executed
+     * @return
      */
     @Override
-    public void exec(Environment env)
+    public int exec(Environment env)
     {
         if ((((int) ((Number) condition.evaluate(env)).evaluate(env)) == 1)
                 || (boolean) condition.evaluate(env))
         {
             b.exec(env);
         }
+        return 0;
     }
 
     /**

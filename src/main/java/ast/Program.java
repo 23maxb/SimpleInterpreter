@@ -31,12 +31,14 @@ public class Program implements Statement
      * Executes the program
      *
      * @param e the environment to use
+     * @return
      */
     @Override
-    public void exec(Environment e)
+    public int exec(Environment e)
     {
         e.setGlobalEnvironment(globalEnvironment);
         toRun.exec(e.global());
+        return 0;
     }
 
     /**

@@ -120,10 +120,12 @@ public class ProcedureDeclaration implements Statement
      * Executes the procedure.
      *
      * @param currentEnvironment the current environment
+     * @return
      */
-    public void exec(Environment currentEnvironment)
+    public int exec(Environment currentEnvironment)
     {
         currentEnvironment.addProcedure(this);
+        return 0;
     }
 
     /**

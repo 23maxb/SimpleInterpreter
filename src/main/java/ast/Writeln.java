@@ -26,11 +26,13 @@ public class Writeln implements Statement
      * Prints out the given expression
      *
      * @param env the environment to pull variables from
+     * @return
      */
     @Override
-    public void exec(Environment env)
+    public int exec(Environment env)
     {
         System.out.println(exp.evaluate(env));
+        return 0;
     }
 
     /**
