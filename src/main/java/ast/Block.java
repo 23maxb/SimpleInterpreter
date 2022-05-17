@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 import java.util.List;
@@ -46,17 +45,5 @@ public class Block implements Statement
     public String toString()
     {
         return "Block(" + statements.toString() + ")";
-    }
-
-    /**
-     * Returns the required assembly code to run the Statement.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        for (Statement statement : statements)
-            statement.compile(e);
     }
 }

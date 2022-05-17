@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -50,24 +49,6 @@ public class WhileLoop implements Statement
     public String toString()
     {
         return "WHILE(" + condition + " DO: " + b.toString() + ")";
-    }
-
-    /**
-     * Returns the required assembly code to run the while loop.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        String a = e.label();
-        String c = e.label();
-        e.emit(c + ":");
-        condition.compile(e);
-        e.emit("beq $t0, $0, " + a);
-        b.compile(e);
-        e.emit("j " + c);
-        e.emit(a + ":");
     }
 
 }

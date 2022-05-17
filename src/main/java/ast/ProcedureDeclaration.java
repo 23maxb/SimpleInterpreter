@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 import java.util.Arrays;
@@ -116,16 +115,6 @@ public class ProcedureDeclaration implements Statement
         return "Method: (" + name + "," + statement + ")";
     }
 
-    /**
-     * Returns the required assembly code to run the Statement.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
 
     /**
      * Executes the procedure.

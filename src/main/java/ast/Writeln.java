@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -43,24 +42,6 @@ public class Writeln implements Statement
     public String toString()
     {
         return "WRITELN(" + exp.toString() + ")";
-    }
-
-    /**
-     * Returns the required assembly code to print the expression.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        e.emit("li $v0, 1");
-        exp.compile(e); // should put the evaluated expression in $t0
-        e.emit("move $a0, $t0");
-        e.emit("syscall");
-        //next need to print out a new line
-        e.emit("li $a0 '\\n'");
-        e.emit("li $v0 11");
-        e.emit("syscall");
     }
 }
 

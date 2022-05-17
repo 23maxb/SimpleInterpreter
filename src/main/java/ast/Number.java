@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -27,10 +26,10 @@ public class Number implements Expression
      * Evaluates the number.
      * (Just returns the integer.)
      *
-     * @precondition none
-     * @postcondition none
      * @param e the enviornment to pull variable values from
      * @return the number object
+     * @precondition none
+     * @postcondition none
      */
     @Override
     public Object evaluate(Environment e)
@@ -49,14 +48,5 @@ public class Number implements Expression
         return "Number(" + number + ")";
     }
 
-    /**
-     * Returns the required assembly code to allocate the number to $t0.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        e.emit("li $t0, " + number);
-    }
+
 }

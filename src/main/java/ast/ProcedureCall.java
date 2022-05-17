@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 import org.jetbrains.annotations.NotNull;
 
@@ -108,14 +107,4 @@ public class ProcedureCall implements Statement, Expression
         return "Procedure(" + procedureCalled + "(" + sb + ")" + ")";
     }
 
-    /**
-     * Returns the required assembly code to run the Statement.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        throw new UnsupportedOperationException("Not implemented yet.");
-    }
 }

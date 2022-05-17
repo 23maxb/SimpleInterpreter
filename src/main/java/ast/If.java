@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -52,18 +51,4 @@ public class If implements Statement
         return "IF(" + condition + " THEN: " + b + ")";
     }
 
-    /**
-     * Returns the required assembly code to run the Statement.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        condition.compile(e);
-        String a = e.label();
-        e.emit("beq $t0, $0, " + a);
-        b.compile(e);
-        e.emit(a + ":");
-    }
 }

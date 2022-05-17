@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -26,12 +25,5 @@ public interface Expression
      */
     @Override
     String toString();
-
-    /**
-     * Returns the required assembly code to evaluate the expression.
-     *
-     * @param e the emitter to use
-     */
-    void compile(Emitter e);
 
 }

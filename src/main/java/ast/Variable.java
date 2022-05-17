@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -58,15 +57,5 @@ public class Variable implements Expression
         return "Variable(" + name + ")";
     }
 
-    /**
-     * Returns the required assembly code to evaluate the expression.
-     * Calling this will set $t0 to the variable value in the code.
-     *
-     * @param e the emitter to use
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        e.emit("lw $t0, var" + name + "#push on stack");
-    }
+
 }

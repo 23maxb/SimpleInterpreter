@@ -1,6 +1,5 @@
 package ast;
 
-import emitter.Emitter;
 import environment.Environment;
 
 /**
@@ -83,108 +82,10 @@ public class BinOp implements Expression
     }
 
     /**
-     * Returns the required assembly code to evaluate the expression.
-     *
-     * @param e the emitter to use
-     * @postcondition $t0 contains the result of the expression
-     */
-    @Override
-    public void compile(Emitter e)
-    {
-        val1.compile(e);
-        e.emit("move $t1, $t0");
-        val2.compile(e);
-        e.emit("move $t2, $t0");
-        switch (operator)
-        {
-            case "+" -> e.emit("add $t0, $t1, $t2 #adding values");
-            case "-" -> e.emit("sub $t0, $t1, $t2 #subtracting values");
-            case "/" -> {
-                e.emit("div $t1, $t2");
-                e.emit("mflo $t0");
-            }
-            case "*" -> {
-                e.emit("mult $t1, $t2");
-                e.emit("mflo $t0");
-            }
-            case "%", "MOD" -> {
-                e.emit("div $t1, $t2");
-                e.emit("mfhi $t0");
-            }
-            case ">" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("bgt $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case "<" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("blt $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case ">=" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("bgt $t1, $t2, " + l);
-                e.emit("beq $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case "<=" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("blt $t1, $t2, " + l);
-                e.emit("beq $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case "<>" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("bne $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case "==" -> {
-                String l = e.label();
-                e.emit("li $t0, 1");
-                e.emit("beq $t1, $t2, " + l);
-                e.emit("li $t0, 0");
-                e.emit(l + ":");
-            }
-            case "&&" -> {
-                String a = e.label();
-                String b = e.label();
-                String c = e.label();
-                e.emit("li $t0, 0");
-                e.emit("beq $t1, 1, " + a);
-                e.emit("j " + c);
-                e.emit(a + ":");
-                e.emit("beq $t2, 1, " + b);
-                e.emit("j " + c);
-                e.emit(b + ":");
-                e.emit("li $t0, 1");
-                e.emit(c + ":");
-            }
-            case "||" -> {
-                String a = e.label();
-                e.emit("li $t0, 1");
-                e.emit("beq $t1, 1, " + a);
-                e.emit("beq $t2, 1, " + a);
-                e.emit("li $t0, 0");
-                e.emit(a + ":");
-            }
-        }
-    }
-
-    /**
      * Returns true if the result of the expression is a boolean.
      * Otherwise false.
      *
-     * @return  true if the result of the expression is a boolean.
+     * @return true if the result of the expression is a boolean.
      */
     public boolean isBoolean()
     {
